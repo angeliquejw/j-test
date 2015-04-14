@@ -1,15 +1,30 @@
 ---
 layout: default
 ---
-<div class="post">
-
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
-  </header>
-
-  <article class="post-content">
-    {{ content }}
-  </article>
-
-</div>
+<main class="home elementWrapper">
+	<article>
+		<div class="container">
+		<h1 class="articleHeadline">{{ page.title }}</h1>
+		<div class="articleContent">
+			{{ content }}
+		</div>		
+		</div>
+		<footer class="articleFooter wrapperFlex">
+			<div class="tagWrapper elementWrapper">
+				<span class="metaIntro">Tagged</span>
+				<ul>
+				{% for tag in page.tags %}
+					<li class="metaInfo"><!-- a href="/tag/{{ tag }}"-->{{ tag }}<!-- /a --></li>
+				{% endfor %}
+				</ul>
+			</div>
+			<div class="dateWrapper elementWrapper">
+				<span class="metaIntro">Written on</span> <time class="metaInfo">{{ page.date | date: "%b %-d, %Y" }}</time>
+			</div>
+			<div class="geolocationWrapper elementWrapper">
+				<span class="metaIntro">While in</span>
+				<span class="metaInfo">{{ page.location }}</span>
+			</div>
+		</footer>
+	</article>
+</main>

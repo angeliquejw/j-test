@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+{% for post in site.posts %}
+<article>
+	<h1 class="articleHeadline">{{ page.title }}</h1>
+	<div class="articleContent">
+		{{ content }}
+	</div>
+	<footer class="articleFooter">
+		<div class="tagWrapper">
+			<ul>
+				{% for tag in page.tags %}
+				<li><!-- a href="/tag/{{ tag }}"-->{{ tag }}<!-- /a --></li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="geolocationWrapper">
+			Written on {{ page.date | date: "%b %-d, %Y" }}, in {{ page.location }}
+		</div>
+	</footer>
+</article>
+{% endfor %}

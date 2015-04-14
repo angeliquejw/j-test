@@ -1,23 +1,33 @@
 ---
 layout: default
 ---
+<main class="home elementWrapper">
+{% for post in site.posts %}
+<article>
+	<div class="container">
+		<h1 class="articleHeadline"><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+		<div class="articleContent">
+		{{ post.excerpt }}
+		</div>    
+	</div>
 
-<div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
-</div>
+	<footer class="articleFooter wrapperFlex">
+		<div class="tagWrapper elementWrapper">
+			<span class="metaIntro">Tagged</span>
+			<ul>
+			{% for tag in post.tags %}
+				<li class="metaInfo"><!-- a href="/tag/{{ tag }}"-->{{ tag }}<!-- /a --></li>
+			{% endfor %}
+			</ul>
+		</div>
+		<div class="dateWrapper elementWrapper">
+			<span class="metaIntro">Written on</span> <time class="metaInfo">{{ post.date | date: "%b %-d, %Y" }}</time>
+		</div>
+		<div class="geolocationWrapper elementWrapper">
+			<span class="metaIntro">While in</span>
+			<span class="metaInfo">{{ post.location }}</span>
+		</div>
+	</footer>
+</article>
+{% endfor %}
+</main>
